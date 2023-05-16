@@ -11,8 +11,16 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
+import DefectEntry from "./DefectEntry";
+import { DefectData } from "App";
 
-const LeftSidebar: FunctionComponent = (): JSX.Element => {
+interface LeftSidebarProps {
+  defectList: DefectData[];
+  currDefectID: number;
+  setDefectID: Function;
+}
+
+const LeftSidebar: FunctionComponent<LeftSidebarProps> = (props): JSX.Element => {
   return (
     <div className="left-sidebar">
       <Accordion
@@ -23,7 +31,7 @@ const LeftSidebar: FunctionComponent = (): JSX.Element => {
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <strong>Active issues</strong>
-            <Chip label="6 unresolved" color="warning" variant="outlined" />
+            <Chip label="8 unresolved" color="warning" variant="outlined" />
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
@@ -31,29 +39,9 @@ const LeftSidebar: FunctionComponent = (): JSX.Element => {
         </AccordionDetails>
 
         <List>
-          <Divider />
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemText primary="Problem 1" secondary="hdasijhd" />
-              <Chip label="Severe" color="error" />
-            </ListItemButton>
-          </ListItem>
-
-          <Divider />
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemText primary="Problem 2" secondary="dakjd fdjsflksdjflk sf fdufp" />
-              <Chip label="Medium" color="warning" />
-            </ListItemButton>
-          </ListItem>
-
-          <Divider />
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemText primary="Problem 3" secondary="flkdsj fidshfoiw rwem ofsdogpjk" />
-              <Chip label="Medium" color="warning" />
-            </ListItemButton>
-          </ListItem>
+          {props.defectList.map((e) => (
+            <DefectEntry defectData={e} selected={e.defectID === props.currDefectID} setDefectID={props.setDefectID} />
+          ))}
         </List>
       </Accordion>
 

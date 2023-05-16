@@ -9,6 +9,7 @@ import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 import SendIcon from "@mui/icons-material/Send";
 import ChatMessageEntry from "./ChatMessageEntry";
+import Typography from "@mui/material/Typography";
 
 const testMessages = [
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -20,6 +21,20 @@ const testMessages = [
 interface RightSidebarProps {
   chatDefectID: string;
   userID: string;
+}
+
+interface ChatMessage {
+  userID: number;
+  username: string;
+  timestamp: number;
+  content: string;
+  figureID: number;
+}
+
+function addChatContent(content: string, userID: number) {}
+
+function getChatDetail(chatDefectID: number, userID: number): ChatMessage[] {
+  return [];
 }
 
 const RightSidebar: FunctionComponent<RightSidebarProps> = (props): JSX.Element => {
@@ -40,6 +55,7 @@ const RightSidebar: FunctionComponent<RightSidebarProps> = (props): JSX.Element 
       }}
     >
       <Paper elevation={2} sx={{ display: "flex", flexDirection: "column", margin: "1em", alignItems: "left", width: "25vw", border: "1px #ccc solid" }}>
+        <Typography align="center"></Typography>
         <List
           sx={{
             overflow: "auto",
