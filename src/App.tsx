@@ -17,7 +17,8 @@ import Divider from "@mui/material/Divider";
 import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
-import SendIcon from "@mui/icons-material/Send"
+import SendIcon from "@mui/icons-material/Send";
+import InputBase from "@mui/material/InputBase";
 
 function App() {
   return (
@@ -64,27 +65,23 @@ function App() {
       <div className="red-border center">
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum magni possimus commodi eius a tempora quae, nulla iste dolor soluta aliquam aperiam aspernatur cupiditate illum molestias itaque quas nemo incidunt.</p>
       </div>
+
       <div className="red-border right-sidebar">
         <Paper
           variant="outlined"
-          elevation={8}
-          style={{
+          elevation={12}
+          sx={{
             margin: "1em",
             padding: "1em",
-            border: "1px orange solid",
           }}
         >
-          <TextField
-            id="outlined-basic"
-            label="proompt"
-            variant="outlined"
-            style={{
-              width: "100%",
-            }}
-          />
-          <IconButton color="primary" aria-label="add to shopping cart">
-            <SendIcon />
-          </IconButton>
+          <Paper elevation={0} component="form" sx={{ display: "flex", alignItems: "center", width: 400, border: "1px #ccc solid" }}>
+            <TextField multiline maxRows={5} variant="standard" sx={{ ml: 1, flex: 1 }} placeholder="Prompt" />
+            <Divider sx={{}} orientation="vertical" />
+            <IconButton color="primary" sx={{ p: "10px" }}>
+              <SendIcon />
+            </IconButton>
+          </Paper>
         </Paper>
       </div>
     </div>
