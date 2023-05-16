@@ -62,8 +62,8 @@ const RightSidebar: FunctionComponent<RightSidebarProps> = (props): JSX.Element 
             maxHeight: "70vh",
           }}
         >
-          {testMessages.map((m) => (
-            <ChatMessageEntry content={m} userID={0} chatHistoryID={0} chatDefectID={0} timestamp={0} />
+          {testMessages.map((m, i) => (
+            <ChatMessageEntry key={i} content={m} userID={0} chatHistoryID={0} chatDefectID={0} timestamp={0} />
           ))}
         </List>
 

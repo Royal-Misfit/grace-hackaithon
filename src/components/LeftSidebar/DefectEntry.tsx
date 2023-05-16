@@ -21,10 +21,10 @@ function getDefectDetail(defectID: number): any {
 }
 
 const severityLevels = Object.freeze({
-  4: <></>,
-  3: <Chip label="Notice" color="primary" />,
-  2: <Chip label="Medium" color="warning" />,
-  1: <Chip label="Severe" color="error" />,
+  0: <></>,
+  4: <Chip label="Notice" color="primary" />,
+  3: <Chip label="Medium" color="warning" />,
+  2: <Chip label="Severe" color="error" />,
 });
 
 

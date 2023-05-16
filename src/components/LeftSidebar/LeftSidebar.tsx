@@ -39,8 +39,8 @@ const LeftSidebar: FunctionComponent<LeftSidebarProps> = (props): JSX.Element =>
         </AccordionDetails>
 
         <List>
-          {props.defectList.map((e) => (
-            <DefectEntry defectData={e} selected={e.defectID === props.currDefectID} setDefectID={props.setDefectID} />
+          {props.defectList.map((e, i) => (
+            <DefectEntry key={i} defectData={e} selected={e.defectID === props.currDefectID} setDefectID={props.setDefectID} />
           ))}
         </List>
       </Accordion>

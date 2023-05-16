@@ -20,7 +20,7 @@ function LinearProgressWithLabel(props: LinearProgressProps & { ys: number[] }) 
     <Box sx={{ display: "flex", alignItems: "center" }}>
       <Box sx={{ width: "100%", mr: 1 }}>
         {props.ys.map((y, i) => (
-          <LinearProgress variant="determinate" sx={{ height: 6 }} {...props} value={Math.min(y, 100)} color={y < 50 ? "primary" : y < 75 ? "warning" : "error"} />
+          <LinearProgress key={i} variant="determinate" sx={{ height: 6 }} {...props} value={Math.min(y, 100)} color={y < 50 ? "primary" : y < 75 ? "warning" : "error"} />
         ))}
       </Box>
       <Box sx={{ minWidth: 35 }}>
