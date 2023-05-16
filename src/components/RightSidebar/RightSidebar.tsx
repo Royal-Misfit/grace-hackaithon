@@ -1,4 +1,6 @@
 import { FunctionComponent } from "react";
+import { useParams } from "react-router-dom";
+
 import "App.css";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
@@ -15,7 +17,17 @@ const testMessages = [
   "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore",
 ];
 
-const RightSidebar: FunctionComponent = (): JSX.Element => {
+interface RightSidebarProps {
+  chatDefectID: string;
+  userID: string;
+}
+
+const RightSidebar: FunctionComponent<RightSidebarProps> = (props): JSX.Element => {
+  let { chatDefectID, userID } = useParams();
+
+  chatDefectID ??= props.chatDefectID;
+  userID ??= props.userID;
+
   return (
     <div
       className="red-border right-sidebar"
@@ -41,7 +53,7 @@ const RightSidebar: FunctionComponent = (): JSX.Element => {
 
         <Divider />
         <div style={{ display: "flex", margin: "1em" }}>
-          <TextField multiline maxRows={5} variant="standard" sx={{ ml: 1, flex: 1 }} placeholder="Prompt" />
+          <TextField multiline maxRows={5} variant="standard" sx={{ ml: 1, flex: 1 }} placeholder={`Defect ID: ${JSON.stringify(chatDefectID)}`} />
           <Divider orientation="vertical" />
           <IconButton color="primary" sx={{ p: "10px" }}>
             <SendIcon />

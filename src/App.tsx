@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <LeftSidebar />
       <MainContent />
-      <RightSidebar />
+      <RightSidebar chatDefectID="0" userID="0" />
     </div>
   );
 }
