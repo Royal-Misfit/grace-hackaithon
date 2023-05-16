@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React, { Component } from "react";
 import Highcharts from "highcharts";
 import { HighchartsChart, Chart, withHighcharts, XAxis, YAxis, Title, Tooltip, ColumnSeries, LineSeries } from "react-jsx-highcharts";
@@ -54,22 +56,17 @@ class ComboChart extends Component {
       >
         <Chart borderWidth={0} />
 
-        {/* @ts-ignore */}
-        <Title style={{ fontSize: "16px", fontWeight: "bold" }}>{this.props.Title}</Title>
+        <Title style={{ fontSize: "16px", fontWeight: "bold" }}>{this.props.title}</Title>
 
         <Tooltip valueSuffix=" ips" valueDecimals={4} />
 
-        {/* @ts-ignore */}
-        <XAxis categories={this.props.ColSeries.map((x) => x.name)} />
+        <XAxis categories={this.props.colSeries.map((x) => x.name)} />
 
         <YAxis>
           <YAxis.Title>Vibration Amplitude (ips)</YAxis.Title>
-          {/* @ts-ignore */}
-          <ColumnSeries name={"Amplitude"} data={this.props.ColSeries} />
-          {/* @ts-ignore */}
-          <LineSeries color="#F0AD4E" step="true" data={this.props.WarningSeries} />
-          {/* @ts-ignore */}
-          <LineSeries color="#B30101" step="true" data={this.props.DangerSeries} />
+          <ColumnSeries name={"Amplitude"} data={this.props.colSeries} />
+          <LineSeries color="#F0AD4E" step="true" data={this.props.warningSeries} />
+          <LineSeries color="#B30101" step="true" data={this.props.dangerSeries} />
         </YAxis>
       </HighchartsChart>
     );

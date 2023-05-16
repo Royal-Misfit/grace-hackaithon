@@ -22,6 +22,12 @@ import InputBase from "@mui/material/InputBase";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 
+import ErrorIcon from "@mui/icons-material/Error";
+import WarningIcon from "@mui/icons-material/Warning";
+import InfoIcon from "@mui/icons-material/Info";
+import PriorityHighIcon from "@mui/icons-material/PriorityHigh";
+import CheckIcon from '@mui/icons-material/Check';
+
 import TestChart from "./components/TestChart";
 
 function App() {
@@ -87,18 +93,57 @@ function App() {
             </ListItem>
           </List>
         </Accordion>
-
       </div>
       <div className="red-border main-content ">
         <TestChart />
+        <Accordion>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <ErrorIcon color="error" sx={{ mr: 1 }} />
+            <Typography sx={{ width: "33%", flexShrink: 0 }}>Axial</Typography>
+            <Typography sx={{ color: "text.secondary" }}>i dunno</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat. Aliquam eget maximus est, id dignissim quam.</Typography>
+          </AccordionDetails>
+        </Accordion>
+
+        <Accordion>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <WarningIcon color="warning" sx={{ mr: 1 }} />
+            <Typography sx={{ width: "33%", flexShrink: 0 }}>Horizontal</Typography>
+            <Typography sx={{ color: "text.secondary" }}>ml kkqn wekwnqewk</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>Donec placerat, lectus sed mattis semper, neque lectus feugiat lectus, varius pulvinar diam eros in elit. Pellentesque convallis laoreet laoreet.</Typography>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <PriorityHighIcon color="info" sx={{ mr: 1 }}  />
+            <Typography sx={{ width: "33%", flexShrink: 0 }}>Vertical</Typography>
+            <Typography sx={{ color: "text.secondary" }}>fligfnjgsgs</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas eros, vitae egestas augue. Duis vel est augue.</Typography>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <CheckIcon color="success"  sx={{ mr: 1 }} />
+            <Typography sx={{ width: "33%", flexShrink: 0 }}>Something else</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas eros, vitae egestas augue. Duis vel est augue.</Typography>
+          </AccordionDetails>
+        </Accordion>
+
+        {/* <TestChart /> */}
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum magni possimus commodi eius a tempora quae, nulla iste dolor soluta aliquam aperiam aspernatur cupiditate illum molestias itaque quas nemo incidunt.</p>
       </div>
 
       <div className="red-border right-sidebar">
-        <Paper
-          variant="outlined"
-          elevation={12}
-          sx={{
+        <div
+          style={{
             height: "100%",
             display: "flex",
             flexDirection: "column",
@@ -106,7 +151,7 @@ function App() {
             justifyContent: "center",
           }}
         >
-          <Paper elevation={2} sx={{ display: "flex", flexDirection: "column", margin: "1em", alignItems: "left", width: "30vw", border: "1px #ccc solid" }}>
+          <Paper elevation={2} sx={{ display: "flex", flexDirection: "column", margin: "1em", alignItems: "left", width: "25vw", border: "1px #ccc solid" }}>
             <List
               sx={{
                 overflow: "auto",
@@ -155,7 +200,7 @@ function App() {
               </IconButton>
             </div>
           </Paper>
-        </Paper>
+        </div>
       </div>
     </div>
   );

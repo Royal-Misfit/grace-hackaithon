@@ -11,7 +11,6 @@
 
 .left-sidebar {
   height: 100%;
-
   border-right: #ddd 1px solid;
   padding-left: 1em;
   padding-right : 1em;
@@ -20,12 +19,17 @@
 
 .main-content {
   height: 100%;
+  padding-top: 0.75em;
+  padding-left: 1.667em;
+  padding-right: 1.667em;
 
+  overflow:auto;
 }
 
 .right-sidebar {
   height: 100%;
   padding: 2px;
+  /* border-left: #ddd 1px solid; */
 }
 
 .red-border {
