@@ -7,6 +7,10 @@ import ListItemText from "@mui/material/ListItemText";
 
 interface ChatMessageEntryProps {
   content: string;
+  userID: number;
+  chatHistoryID: number;
+  chatDefectID: number;
+  timestamp: number;
 }
 
 const ChatMessageEntry: FunctionComponent<ChatMessageEntryProps> = (props): JSX.Element => {

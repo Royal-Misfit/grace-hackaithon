@@ -12,11 +12,14 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
 
-
 const LeftSidebar: FunctionComponent = (): JSX.Element => {
   return (
     <div className="left-sidebar">
-      <Accordion>
+      <Accordion
+        style={{
+          backgroundColor: "#eee",
+        }}
+      >
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <strong>Active issues</strong>
@@ -54,7 +57,11 @@ const LeftSidebar: FunctionComponent = (): JSX.Element => {
         </List>
       </Accordion>
 
-      <Accordion>
+      <Accordion
+        style={{
+          backgroundColor: "#eee",
+        }}
+      >
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <strong>Something else</strong>
@@ -76,7 +83,11 @@ const LeftSidebar: FunctionComponent = (): JSX.Element => {
         </List>
       </Accordion>
 
-      <Accordion>
+      <Accordion
+        style={{
+          backgroundColor: "#eee",
+        }}
+      >
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <strong>Some other thing</strong>

@@ -54,7 +54,7 @@ class ComboChart extends Component {
           },
         }}
       >
-        <Chart borderWidth={0} />
+        <Chart />
 
         <Title style={{ fontSize: "13px", fontWeight: "bold" }}>{this.props.title}</Title>
 
