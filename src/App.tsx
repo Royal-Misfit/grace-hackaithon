@@ -19,6 +19,10 @@ import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 import SendIcon from "@mui/icons-material/Send";
 import InputBase from "@mui/material/InputBase";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import Avatar from "@mui/material/Avatar";
+
+import TestChart from "./components/TestChart";
 
 function App() {
   return (
@@ -61,8 +65,32 @@ function App() {
             </ListItem>
           </List>
         </Accordion>
+
+        <Accordion>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <strong>Something else</strong>
+              <Chip label="i dunno" color="primary" variant="outlined" />
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.</Typography>
+          </AccordionDetails>
+
+          <List>
+            <Divider />
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemText primary="Problem 1" secondary="hdasijhd" />
+                <Chip label="Severe" color="error" />
+              </ListItemButton>
+            </ListItem>
+          </List>
+        </Accordion>
+
       </div>
-      <div className="red-border center">
+      <div className="red-border main-content ">
+        <TestChart />
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum magni possimus commodi eius a tempora quae, nulla iste dolor soluta aliquam aperiam aspernatur cupiditate illum molestias itaque quas nemo incidunt.</p>
       </div>
 
@@ -71,16 +99,61 @@ function App() {
           variant="outlined"
           elevation={12}
           sx={{
-            margin: "1em",
-            padding: "1em",
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          <Paper elevation={0} component="form" sx={{ display: "flex", alignItems: "center", width: 400, border: "1px #ccc solid" }}>
-            <TextField multiline maxRows={5} variant="standard" sx={{ ml: 1, flex: 1 }} placeholder="Prompt" />
-            <Divider sx={{}} orientation="vertical" />
-            <IconButton color="primary" sx={{ p: "10px" }}>
-              <SendIcon />
-            </IconButton>
+          <Paper elevation={2} sx={{ display: "flex", flexDirection: "column", margin: "1em", alignItems: "left", width: "30vw", border: "1px #ccc solid" }}>
+            <List
+              sx={{
+                overflow: "auto",
+                maxHeight: "70vh",
+              }}
+            >
+              <Divider />
+              <ListItem alignItems="flex-start">
+                <ListItemAvatar>
+                  <Avatar />
+                </ListItemAvatar>
+                <ListItemText primary="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+              </ListItem>
+
+              <Divider />
+              <ListItem alignItems="flex-start">
+                <ListItemAvatar>
+                  <Avatar />
+                </ListItemAvatar>
+                <ListItemText primary="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+              </ListItem>
+
+              <Divider />
+              <ListItem alignItems="flex-start">
+                <ListItemAvatar>
+                  <Avatar />
+                </ListItemAvatar>
+                <ListItemText primary="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+              </ListItem>
+
+              <Divider />
+              <ListItem alignItems="flex-start">
+                <ListItemAvatar>
+                  <Avatar />
+                </ListItemAvatar>
+                <ListItemText primary="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+              </ListItem>
+            </List>
+
+            <Divider />
+            <div style={{ display: "flex", margin: "1em" }}>
+              <TextField multiline maxRows={5} variant="standard" sx={{ ml: 1, flex: 1 }} placeholder="Prompt" />
+              <Divider sx={{}} orientation="vertical" />
+              <IconButton color="primary" sx={{ p: "10px" }}>
+                <SendIcon />
+              </IconButton>
+            </div>
           </Paper>
         </Paper>
       </div>
