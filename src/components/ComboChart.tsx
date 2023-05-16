@@ -56,7 +56,7 @@ class ComboChart extends Component {
       >
         <Chart borderWidth={0} />
 
-        <Title style={{ fontSize: "16px", fontWeight: "bold" }}>{this.props.title}</Title>
+        <Title style={{ fontSize: "13px", fontWeight: "bold" }}>{this.props.title}</Title>
 
         <Tooltip valueSuffix=" ips" valueDecimals={4} />
 

@@ -65,7 +65,7 @@ export default function TestChart(props: any) {
           [4.5, 0.08125],
           [5.49, 0.08125],
         ]}
-        title="Axial"
+        title="(PUT SOME OTHER CHART HERE)"
         WarningIPS={0.1}
         DangerIPS={0.3}
         ShowSpinner={false}
