@@ -12,15 +12,19 @@
 .left-sidebar {
   height: 100%;
   flex-grow: 1;
-
+  border-right: #ddd 1px solid
 }
 
 .main-content {
+  height: 100%;
   flex-grow: 4;
 }
 
 .right-sidebar {
+  width: 30vw;
+  height: 100%;
   flex-grow: 1;
+  padding: 2px;
 }
 
 .red-border {
