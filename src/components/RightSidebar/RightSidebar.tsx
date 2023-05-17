@@ -11,6 +11,8 @@ import SendIcon from "@mui/icons-material/Send";
 import ChatMessageEntry from "./ChatMessageEntry";
 import Typography from "@mui/material/Typography";
 
+import executePrompt from "scripts/PromptEngine";
+
 const testMessages = [
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore",
@@ -32,6 +34,7 @@ interface ChatMessage {
 }
 
 const RightSidebar: FunctionComponent<RightSidebarProps> = (props): JSX.Element => {
+
   const [msgContent, setMsgContent] = useState("");
   const [messageList, setMessageList] = useState<ChatMessage[]>([]);
   const chatBoxRef = useRef(null);
@@ -90,6 +93,7 @@ const RightSidebar: FunctionComponent<RightSidebarProps> = (props): JSX.Element 
       await fetch(`https://cg-rc-develop.azurewebsites.net/api/AddChatContent?` + params, {
         method: "POST",
       }).then((response) => {
+        executePrompt(chatDefectID!!)
         getChatDetail(chatDefectID!!, 1);
       });
     } catch (ex) {
@@ -124,7 +128,7 @@ const RightSidebar: FunctionComponent<RightSidebarProps> = (props): JSX.Element 
           {messageList.map((m, i) => (
             <ChatMessageEntry key={i} content={m.content} userID={m.userID} figureID={m.figureID} username={m.username} timestamp={m.timestamp} />
           ))}
-          <div ref={chatBoxRef}>flag</div>
+          <div ref={chatBoxRef}></div>
         </List>
 
         <Divider />
