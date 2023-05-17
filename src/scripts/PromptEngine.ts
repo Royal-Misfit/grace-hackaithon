@@ -54,7 +54,8 @@ const executePrompt = async (defectID: string, messageHistory: ChatMessage[], on
 
     const completion_text = completion.data.choices[0].message.content;
 
-    ///
+    //
+    // Adding chat content
     const url = "https://cg-rc-develop.azurewebsites.net/api/AddChatContent?chatDefectID=" + defectID + "&userID=0&chatContent=" + completion_text + "&figureTypeID=0";
     const Http = new XMLHttpRequest();
     Http.open("POST", url);
