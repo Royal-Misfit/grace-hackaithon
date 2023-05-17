@@ -59,7 +59,6 @@ const RightSidebar: FunctionComponent<RightSidebarProps> = (props): JSX.Element 
           };
         })
       );
-
       scrollToLatest();
     } catch (error) {
       console.log("ERROR IN GETTING CHAT");
@@ -69,6 +68,7 @@ const RightSidebar: FunctionComponent<RightSidebarProps> = (props): JSX.Element 
   }
 
   function scrollToLatest() {
+    console.log("SCROLL");
     // @ts-ignore
     chatBoxRef.current.scrollIntoView({ behavior: "smooth" });
   }
@@ -98,9 +98,13 @@ const RightSidebar: FunctionComponent<RightSidebarProps> = (props): JSX.Element 
     }
   }
 
-  useEffect((): void => {
+  useEffect(() => {
+    setMessageList([]);
     getChatDetail(chatDefectID!!, 1);
-    scrollToLatest();
+    const timer = setTimeout(() => {
+      scrollToLatest();
+    }, 1000);
+    return () => clearTimeout(timer);
   }, [chatDefectID]);
 
   return (
@@ -120,7 +124,7 @@ const RightSidebar: FunctionComponent<RightSidebarProps> = (props): JSX.Element 
           {messageList.map((m, i) => (
             <ChatMessageEntry key={i} content={m.content} userID={m.userID} figureID={m.figureID} username={m.username} timestamp={m.timestamp} />
           ))}
-          <div ref={chatBoxRef} />
+          <div ref={chatBoxRef}>flag</div>
         </List>
 
         <Divider />
