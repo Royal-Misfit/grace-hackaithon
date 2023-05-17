@@ -34,7 +34,6 @@ interface ChatMessage {
 }
 
 const RightSidebar: FunctionComponent<RightSidebarProps> = (props): JSX.Element => {
-
   const [msgContent, setMsgContent] = useState("");
   const [messageList, setMessageList] = useState<ChatMessage[]>([]);
   const chatBoxRef = useRef(null);
@@ -93,8 +92,10 @@ const RightSidebar: FunctionComponent<RightSidebarProps> = (props): JSX.Element 
       await fetch(`https://cg-rc-develop.azurewebsites.net/api/AddChatContent?` + params, {
         method: "POST",
       }).then((response) => {
-        executePrompt(chatDefectID!!)
         getChatDetail(chatDefectID!!, 1);
+        executePrompt(chatDefectID!!, () => {
+          getChatDetail(chatDefectID!!, 1);
+        });
       });
     } catch (ex) {
       console.log("ERROR IN ADDING MESSAGE");
@@ -103,11 +104,15 @@ const RightSidebar: FunctionComponent<RightSidebarProps> = (props): JSX.Element 
   }
 
   useEffect(() => {
+    scrollToLatest();
+  }, [messageList])
+
+  useEffect(() => {
     setMessageList([]);
     getChatDetail(chatDefectID!!, 1);
     const timer = setTimeout(() => {
       scrollToLatest();
-    }, 1000);
+    }, 500);
     return () => clearTimeout(timer);
   }, [chatDefectID]);
 

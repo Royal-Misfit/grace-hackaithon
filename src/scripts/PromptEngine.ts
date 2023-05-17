@@ -2,7 +2,7 @@
 
 const { Configuration, OpenAIApi } = require("openai");
 
-const executePrompt = async (defectID: string) => {
+const executePrompt = async (defectID: string, onCompletion: Function) => {
   console.log(process.env.REACT_APP_OPEN_AI_KEY)
   let temp = "s" + "k-" + btoa("\u001a\u0001­¢´Åvõ\u001fkU\u0098\u000fTàOpen").slice(0, -3) + "k";
   let sk = (temp + btoa("\u0014\u009aÇ\u0018VsÌ(\u009aæ=Êi³/Ü").slice(0, -2)).slice(0, -1) + "G"
@@ -38,17 +38,18 @@ const executePrompt = async (defectID: string) => {
         });
 
         const completion_text = completion.data.choices[0].message.content;
-        url = "http://cg-rc-develop.azurewebsites.net/api/AddChatContent?chatDefectID=" + defectID + "&userID=0&chatContent=" + completion_text + "%20GENERATED%20BOT&figureTypeID=0";
+        url = "http://cg-rc-develop.azurewebsites.net/api/AddChatContent?chatDefectID=" + defectID + "&userID=0&chatContent=" + completion_text + "&figureTypeID=0";
         const Http = new XMLHttpRequest();
         Http.open("POST", url);
         Http.send();
 
         Http.onreadystatechange = function () {
           if (this.readyState == 4 && this.status == 200) {
+            onCompletion();
             return;
           }
         };
-
+    
         //history.push([user_input, completion_text]);
       } catch (error: any) {
         if (error.response) {
