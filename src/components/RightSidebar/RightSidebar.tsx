@@ -25,7 +25,7 @@ interface RightSidebarProps {
   userID: string;
 }
 
-interface ChatMessage {
+export interface ChatMessage {
   userID: string;
   username: string;
   timestamp: string;
@@ -93,7 +93,7 @@ const RightSidebar: FunctionComponent<RightSidebarProps> = (props): JSX.Element 
         method: "POST",
       }).then((response) => {
         getChatDetail(chatDefectID!!, 1);
-        executePrompt(chatDefectID!!, () => {
+        executePrompt(chatDefectID!!, messageList.concat([newMessage]), () => {
           getChatDetail(chatDefectID!!, 1);
         });
       });
