@@ -70,7 +70,6 @@ const RightSidebar: FunctionComponent<RightSidebarProps> = (props): JSX.Element 
   }
 
   function scrollToLatest() {
-    console.log("SCROLL");
     // @ts-ignore
     chatBoxRef.current.scrollIntoView({ behavior: "smooth" });
   }
