@@ -22,7 +22,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/detail/:chatDefectID/:userID",
-    element: <RightSidebar chatDefectID="0" userID="0" />,
+    element: <RightSidebar chatDefectID="0" userID="1" />,
   },
 ]);
 

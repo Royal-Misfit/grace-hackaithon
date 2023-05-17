@@ -48,7 +48,7 @@ const LeftSidebar: FunctionComponent<LeftSidebarProps> = (props): JSX.Element =>
 
           <Divider />
           <ListItem disablePadding style={{ backgroundColor: "#f4cece" }}>
-            <ListItemButton onClick={() => props.createDefect({})} style={{ display: "flex", justifyContent: "space-between" }}>
+            <ListItemButton onClick={() => props.createDefect()} style={{ display: "flex", justifyContent: "space-between" }}>
               <strong style={{ color: "#e64040" }}>Create more chaos</strong>
               <AddBoxIcon color="error" />
             </ListItemButton>

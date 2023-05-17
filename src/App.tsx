@@ -75,7 +75,11 @@ function App() {
     return;
   }
 
-  async function createDefect(data: DefectData) {}
+  async function createDefect() {
+    await fetch("https://cg-rc-develop.azurewebsites.net/api/CreateNewDefectChat").then(() => {
+      getMasterChatList();
+    });
+  }
 
   useEffect((): void => {
     getMasterChatList();
@@ -83,14 +87,9 @@ function App() {
 
   return (
     <div className="App">
-      <LeftSidebar 
-        defectList={defectList} 
-        currDefectID={currDefectID} 
-        setDefectID={setDefectID} 
-        createDefect={createDefect}
-      />
-      <MainContent defectData={defectList.find(e => e.defectID === currDefectID)!!}/>
-      <RightSidebar chatDefectID={currDefectID.toString()} userID="0" />
+      <LeftSidebar defectList={defectList} currDefectID={currDefectID} setDefectID={setDefectID} createDefect={createDefect} />
+      <MainContent defectData={defectList.find((e) => e.defectID === currDefectID)!!} />
+      <RightSidebar chatDefectID={currDefectID.toString()} userID="1" />
     </div>
   );
 }
