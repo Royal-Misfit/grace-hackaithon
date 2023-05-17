@@ -1,4 +1,4 @@
-import { FunctionComponent, useState, useEffect } from "react";
+import { FunctionComponent, useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 
 import "App.css";
@@ -34,18 +34,20 @@ interface ChatMessage {
 const RightSidebar: FunctionComponent<RightSidebarProps> = (props): JSX.Element => {
   const [msgContent, setMsgContent] = useState("");
   const [messageList, setMessageList] = useState<ChatMessage[]>([]);
+  const chatBoxRef = useRef(null);
 
   let { chatDefectID, userID } = useParams();
 
   chatDefectID ??= props.chatDefectID;
   userID ??= props.userID;
 
-  async function getChatDetail(chatDefectID: number, userID: number) {
+  async function getChatDetail(chatDefectID: string, userID: number) {
     try {
       const response = await fetch(`https://cg-rc-develop.azurewebsites.net/api/GetChatDetail?chatDefectID=${chatDefectID}&userID=${userID}`, {
         method: "POST",
       });
       const json = await response.json();
+
       setMessageList(
         json.map((entry: any): ChatMessage => {
           return {
@@ -57,14 +59,23 @@ const RightSidebar: FunctionComponent<RightSidebarProps> = (props): JSX.Element 
           };
         })
       );
+
+      scrollToLatest();
     } catch (error) {
-      console.log("ERROR IN GETTING MASTER CHAT LIST");
+      console.log("ERROR IN GETTING CHAT");
       console.log(error);
     }
     return [];
   }
 
+  function scrollToLatest() {
+    // @ts-ignore
+    chatBoxRef.current.scrollIntoView({ behavior: "smooth" });
+  }
+
   async function addMessage(content: string, userID: string) {
+    setMsgContent("");
+
     const newMessage: ChatMessage = {
       userID: userID,
       username: "test",
@@ -72,33 +83,44 @@ const RightSidebar: FunctionComponent<RightSidebarProps> = (props): JSX.Element 
       figureID: 0,
       timestamp: "2",
     };
-    // TODO: CURRENTLY USING DEFECTID = 1
-    const params = `chatDefectID=${1}&userID=${newMessage.userID}&chatContent=${encodeURIComponent(newMessage.content)}&figureTypeID=${newMessage.figureID}`;
+    // TODO: CURRENTLY USING DEFECTID
+    const params = `chatDefectID=${chatDefectID}&userID=${newMessage.userID}&chatContent=${encodeURIComponent(newMessage.content)}&figureTypeID=${newMessage.figureID}`;
 
-    await fetch(`https://cg-rc-develop.azurewebsites.net/api/AddChatContent?` + params, {
-      method: "POST",
-    }).then((response) => {
-      setMessageList(messageList.concat([newMessage]));
-    });
+    try {
+      await fetch(`https://cg-rc-develop.azurewebsites.net/api/AddChatContent?` + params, {
+        method: "POST",
+      }).then((response) => {
+        getChatDetail(chatDefectID!!, 1);
+      });
+    } catch (ex) {
+      console.log("ERROR IN ADDING MESSAGE");
+      console.log(ex);
+    }
   }
 
   useEffect((): void => {
-    getChatDetail(1, 1);
-  }, []);
+    getChatDetail(chatDefectID!!, 1);
+    scrollToLatest();
+  }, [chatDefectID]);
 
   return (
     <div className="red-border right-sidebar">
-      <Paper elevation={2} sx={{ display: "flex", flexDirection: "column", margin: "1em", alignItems: "left", width: "25vw", border: "1px #ccc solid" }}>
+      <Paper
+        elevation={2}
+        // style={{ border: "1px green dashed" }}
+        sx={{ display: "flex", flexDirection: "column", width: "100%", alignItems: "left", border: "1px #ccc solid" }}
+      >
         <Typography align="center"></Typography>
         <List
           sx={{
-            overflow: "auto",
+            overflowY: "auto",
             maxHeight: "70vh",
           }}
         >
           {messageList.map((m, i) => (
             <ChatMessageEntry key={i} content={m.content} userID={m.userID} figureID={m.figureID} username={m.username} timestamp={m.timestamp} />
           ))}
+          <div ref={chatBoxRef} />
         </List>
 
         <Divider />
@@ -112,7 +134,7 @@ const RightSidebar: FunctionComponent<RightSidebarProps> = (props): JSX.Element 
             maxRows={5}
             variant="standard"
             sx={{ ml: 1, flex: 1 }}
-            placeholder={`Defect ID: ${JSON.stringify(chatDefectID)}`}
+            placeholder={`Defect ID: ${chatDefectID}`}
           />
           <Divider orientation="vertical" />
           <IconButton

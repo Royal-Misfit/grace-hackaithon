@@ -6,12 +6,14 @@ import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RightSidebar from "components/RightSidebar/RightSidebar";
 import { createTheme, ThemeProvider } from "@mui/material";
+import TopBar from "components/TopBar";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
 const THEME = createTheme({
   typography: {
     fontFamily: `"Barlow"`,
+    fontSize: 13
   },
 });
 
@@ -22,13 +24,14 @@ const router = createBrowserRouter([
   },
   {
     path: "/detail/:chatDefectID/:userID",
-    element: <RightSidebar chatDefectID="0" userID="1" />,
+    element: <RightSidebar chatDefectID="1" userID="1" />,
   },
 ]);
 
 root.render(
-  <React.StrictMode>
+  <React.StrictMode>  
     <ThemeProvider theme={THEME}>
+      <TopBar />
       <RouterProvider router={router} />
     </ThemeProvider>
   </React.StrictMode>

@@ -44,7 +44,7 @@ const testDefectList = [
 ];
 
 function App() {
-  const [currDefectID, setDefectID] = useState(0);
+  const [currDefectID, setDefectID] = useState(1);
 
   const [defectList, setDefectList] = useState<DefectData[]>([]);
 

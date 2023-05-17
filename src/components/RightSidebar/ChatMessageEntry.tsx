@@ -30,7 +30,7 @@ const ChatMessageEntry: FunctionComponent<ChatMessageEntryProps> = (props): JSX.
             </Avatar>
           )}
         </ListItemAvatar>
-        <ListItemText primary={props.content} />
+        <ListItemText primary={<span style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}>{props.content}</span>} />
       </ListItem>
     </>
   );
