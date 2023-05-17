@@ -4,7 +4,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import { DefectData } from "App";
-import React, { FunctionComponent } from "react";
+import { FunctionComponent } from "react";
 
 interface DefectEntryProps {
   defectData: DefectData;
@@ -34,7 +34,7 @@ const DefectEntry: FunctionComponent<DefectEntryProps> = ({ defectData, selected
   return (
     <>
       <Divider />
-      <ListItem disablePadding>
+      <ListItem disablePadding style={selected ? { backgroundColor: "#D0DCE5" } : {}}>
         <ListItemButton selected={selected} onClick={() => setDefectID(defectData.defectID)}>
           <ListItemText primary={defectData.assetName} secondary={defectData.defectName} />
 

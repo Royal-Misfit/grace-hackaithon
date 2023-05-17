@@ -15,6 +15,12 @@ import TestChart from "components/TestChart";
 import LinearProgress, { LinearProgressProps } from "@mui/material/LinearProgress";
 import Box from "@mui/material/Box";
 
+import { DefectData } from "App";
+
+interface MainContentProps {
+  defectData: DefectData;
+}
+
 function LinearProgressWithLabel(props: LinearProgressProps & { ys: number[] }) {
   return (
     <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -30,9 +36,10 @@ function LinearProgressWithLabel(props: LinearProgressProps & { ys: number[] }) 
   );
 }
 
-const MainContent: FunctionComponent = (): JSX.Element => {
+const MainContent: FunctionComponent<MainContentProps> = ({ defectData }): JSX.Element => {
   return (
     <div className="red-border main-content ">
+      <p>{JSON.stringify(defectData)}</p>
       <TestChart />
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -41,7 +48,8 @@ const MainContent: FunctionComponent = (): JSX.Element => {
             <Typography sx={{ width: "33%", flexShrink: 0 }}>Axial</Typography>
           </div>
           <Box sx={{ width: "35%" }}>
-            <LinearProgressWithLabel ys={[62, 25, 37, 45, 95, 75]} />
+            {/* @ts-ignore */}
+            <LinearProgressWithLabel ys={[...Array(7).keys()].map((_) => Math.exp(Math.random() * 4.75))} />
           </Box>
         </AccordionSummary>
         <AccordionDetails>
@@ -57,7 +65,8 @@ const MainContent: FunctionComponent = (): JSX.Element => {
             <Typography sx={{ width: "33%", flexShrink: 0 }}>Horizontal</Typography>
           </div>
           <Box sx={{ width: "35%" }}>
-            <LinearProgressWithLabel ys={[88, 73, 127, 25, 65, 44]} />
+            {/* @ts-ignore */}
+            <LinearProgressWithLabel ys={[...Array(7).keys()].map((_) => Math.exp(Math.random() * 4.75))} />
           </Box>
         </AccordionSummary>
         <AccordionDetails>
@@ -72,7 +81,8 @@ const MainContent: FunctionComponent = (): JSX.Element => {
             <Typography sx={{ width: "33%", flexShrink: 0 }}>Vertical</Typography>
           </div>
           <Box sx={{ width: "35%" }}>
-            <LinearProgressWithLabel ys={[55, 20, 4, 16, 12, 4]} />
+            {/* @ts-ignore */}
+            <LinearProgressWithLabel ys={[...Array(7).keys()].map((_) => Math.exp(Math.random() * 4.75))} />
           </Box>
         </AccordionSummary>
         <AccordionDetails>
@@ -98,7 +108,6 @@ const MainContent: FunctionComponent = (): JSX.Element => {
       </Accordion>
 
       {/* <TestChart /> */}
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum magni possimus commodi eius a tempora quae, nulla iste dolor soluta aliquam aperiam aspernatur cupiditate illum molestias itaque quas nemo incidunt.</p>
     </div>
   );
 };

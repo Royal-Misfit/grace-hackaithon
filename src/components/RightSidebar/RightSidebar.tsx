@@ -44,16 +44,7 @@ const RightSidebar: FunctionComponent<RightSidebarProps> = (props): JSX.Element 
   userID ??= props.userID;
 
   return (
-    <div
-      className="red-border right-sidebar"
-      style={{
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
+    <div className="red-border right-sidebar">
       <Paper elevation={2} sx={{ display: "flex", flexDirection: "column", margin: "1em", alignItems: "left", width: "25vw", border: "1px #ccc solid" }}>
         <Typography align="center"></Typography>
         <List

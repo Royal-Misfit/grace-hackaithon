@@ -3,25 +3,34 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter, Routes, Route, createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RightSidebar from "components/RightSidebar/RightSidebar";
+import { createTheme, ThemeProvider } from "@mui/material";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
+const THEME = createTheme({
+  typography: {
+    fontFamily: `"Barlow"`,
+  },
+});
+
 const router = createBrowserRouter([
   {
-    path: "/dashboard",
+    path: "/",
     element: <App />,
   },
   {
     path: "/detail/:chatDefectID/:userID",
     element: <RightSidebar chatDefectID="0" userID="0" />,
-  }
+  },
 ]);
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ThemeProvider theme={THEME}>
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </React.StrictMode>
 );
 

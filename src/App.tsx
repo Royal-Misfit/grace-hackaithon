@@ -75,14 +75,21 @@ function App() {
     return;
   }
 
+  async function createDefect(data: DefectData) {}
+
   useEffect((): void => {
     getMasterChatList();
   }, []);
 
   return (
     <div className="App">
-      <LeftSidebar defectList={defectList} currDefectID={currDefectID} setDefectID={setDefectID} />
-      <MainContent />
+      <LeftSidebar 
+        defectList={defectList} 
+        currDefectID={currDefectID} 
+        setDefectID={setDefectID} 
+        createDefect={createDefect}
+      />
+      <MainContent defectData={defectList.find(e => e.defectID === currDefectID)!!}/>
       <RightSidebar chatDefectID={currDefectID.toString()} userID="0" />
     </div>
   );

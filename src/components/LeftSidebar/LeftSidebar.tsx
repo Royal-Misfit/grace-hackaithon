@@ -12,12 +12,15 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
 import DefectEntry from "./DefectEntry";
+import AddBoxIcon from "@mui/icons-material/AddBox";
+
 import { DefectData } from "App";
 
 interface LeftSidebarProps {
   defectList: DefectData[];
   currDefectID: number;
   setDefectID: Function;
+  createDefect: Function;
 }
 
 const LeftSidebar: FunctionComponent<LeftSidebarProps> = (props): JSX.Element => {
@@ -31,7 +34,7 @@ const LeftSidebar: FunctionComponent<LeftSidebarProps> = (props): JSX.Element =>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <strong>Active issues</strong>
-            <Chip label="8 unresolved" color="warning" variant="outlined" />
+            <Chip label={props.defectList.length + " unresolved"} color="warning" variant="outlined" />
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
@@ -42,6 +45,14 @@ const LeftSidebar: FunctionComponent<LeftSidebarProps> = (props): JSX.Element =>
           {props.defectList.map((e, i) => (
             <DefectEntry key={i} defectData={e} selected={e.defectID === props.currDefectID} setDefectID={props.setDefectID} />
           ))}
+
+          <Divider />
+          <ListItem disablePadding style={{ backgroundColor: "#f4cece" }}>
+            <ListItemButton onClick={() => props.createDefect({})} style={{ display: "flex", justifyContent: "space-between" }}>
+              <strong style={{ color: "#e64040" }}>Create more chaos</strong>
+              <AddBoxIcon color="error" />
+            </ListItemButton>
+          </ListItem>
         </List>
       </Accordion>
 
